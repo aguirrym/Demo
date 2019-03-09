@@ -1,15 +1,33 @@
-"TTFHW" [is a recently popular](https://sendgrid.com/blog/three-ways-to-decrease-time-to-first-hello-world/) short-hand for Time To First Hello World, [also see this blog](https://betterologist.net/2016/08/jenkins-pipeline-ttfhw/).
+# # Jenkins Complete CI/CD Pipeline Demonstration # 
 
-|[**_author_**](https://betterologist.net/2016/06/jammazwan-for-hire/)|Time To First Hello World|[TL;DR? _about:_](https://youtu.be/lb0kqQYfNJw)|
-| --- | --- | --- |
-|<img class="style-svg" src="https://betterologist.net/wp-content/uploads/2016/05/pete-300x297.jpg" alt="pete" width="116" height="115" />|<img class="style-svg" src="https://betterologist.net/wp-content/uploads/2016/08/clockface.png" alt="jammazwanPhotoSmall" width="200" height="116" />|[<img class="style-svg" src="https://betterologist.net/wp-content/uploads/2016/08/jenkinsPipelineThumbnail.png" alt="about" width="115" height="115" />](https://youtu.be/lb0kqQYfNJw)|
-##### Ready to run example Jenkins Pipeline project, runnable in Jenkins CI server in 60 seconds
----
 
-### jenkins_pipeline_java_maven 
+----------
 
-Functionality: **_Example of a Jenkins Pipeline project that would build a java project_**
+**Deliverables**:
+This demonstration will simulate a completely automated CI/CD deployment pipeline using Jenkins. It will essentially do the following steps (phases):
+1. Pull the source code for a Java EE based Project from GIT. (SCM AUTOMATION)
+ 2. Compile (build) the code using Maven to generate the .war file (BUILD AUTOMATION)
+ 3. Run Test cases & ensure they pass. (TEST AUTOMATION)
+ 4. Copy the .war to a Docker build workspace (DEPLOYMENT AUTOMATION)
+ 5. Build a Docker image for Jboss server to run the war file. (DEPLOYMENT AUTOMATION)
+ 6. Deploy the Docker container on a target node. (DEPLOYMENT AUTOMATION)
 
----
+**Prerequisites**:
+This demonstration has the following prerequisites:
+ 1. Jenkins should be installed with git, maven and shell plugins.
+ 2. In Jenkins Server install using # yum -y install git maven docker before trying out this demo.
+ 3. Changes to be made for Jenkins to be able to run docker.
+```
+echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo 'Defaults:jenkins !requiretty' >> /etc/sudoers
+setenforce 0 # Else disable SELINUX in /etc/sysconfig/selinux  and reboot
+ ```
+ **Execution**:
+Add a Jenkins Build Job As per the below screenshot and build it:
+ - Note: Add the build commands from the **jenkins_build_commands.md** file.
 
-see [this video tutorial](https://youtu.be/lb0kqQYfNJw) for how to run this project in your Jenkins server
+![Jenkins build job](https://github.com/prasanjit-/devops_pipeline_demo/blob/master/images/Jenkins01.png)
+![Jenkins build job](https://github.com/prasanjit-/devops_pipeline_demo/blob/master/images/jenkins02.png)
+![Jenkins build job](https://github.com/prasanjit-/devops_pipeline_demo/blob/master/images/jenkins03.png)
+![Jenkins build job](https://github.com/prasanjit-/devops_pipeline_demo/blob/master/images/jenkins04.png)
+![Jenkins build job](https://github.com/prasanjit-/devops_pipeline_demo/blob/master/images/jenkins05.png)
